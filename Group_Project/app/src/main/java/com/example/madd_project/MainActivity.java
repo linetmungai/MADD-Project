@@ -61,8 +61,26 @@ btnCompute.setOnClickListener(v -> {
             return;
         }
 
-        // If all validations pass
-        tvResult.setText("Validation Passed. Ready to calculate!");
+        // Calculate BMI: BMI = weight(kg) / height(m)^2
+        double bmi = weight / (height * height);
+
+        // Determine category
+        String category;
+        if (bmi < 18.5) {
+            category = "Underweight";
+        } else if (bmi < 25) {
+            category = "Normal";
+        } else if (bmi < 30) {
+            category = "Overweight";
+        } else {
+            category = "Obesity";
+        }
+
+        // Format BMI to 2 decimal places and include category
+        String bmiResult = String.format("BMI: %.2f (%s)", bmi, category);
+
+        // Display the result
+        tvResult.setText(bmiResult);
 
     } catch (NumberFormatException e) {
         // Prevents crash if input is just "." or invalid chars
