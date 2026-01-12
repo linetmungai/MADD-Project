@@ -65,16 +65,7 @@ btnCompute.setOnClickListener(v -> {
         double bmi = weight / (height * height);
 
         // Determine category
-        String category;
-        if (bmi < 18.5) {
-            category = "Underweight";
-        } else if (bmi < 25) {
-            category = "Normal";
-        } else if (bmi < 30) {
-            category = "Overweight";
-        } else {
-            category = "Obesity";
-        }
+        String category = getBMICategory(bmi);
 
         // Format BMI to 2 decimal places and include category
         String bmiResult = String.format("BMI: %.2f (%s)", bmi, category);
@@ -94,5 +85,17 @@ btnCompute.setOnClickListener(v -> {
             etHeight.setText("");
             tvResult.setText("");
         });
+    }
+
+    private String getBMICategory(double bmi) {
+        if (bmi < 18.5) {
+            return "Underweight";
+        } else if (bmi < 25) {
+            return "Normal";
+        } else if (bmi < 30) {
+            return "Overweight";
+        } else {
+            return "Obese";
+        }
     }
 }
